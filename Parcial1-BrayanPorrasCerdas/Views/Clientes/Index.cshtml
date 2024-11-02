@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Parcial1_BrayanPorrasCerdas.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Clientes Info";
+}
+
+<h1>Clientes</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-dark">Crear Cliente</a>
+</p>
+
+<form asp-controller="Clientes" asp-action="Index">
+    <p>
+        BUSCAR CLIENTE: <input type="text" name="buscar" class="form-text" />
+        <input type="submit" value="Buscar" class="btn btn-sm btn-dark" />
+    </p>
+</form>
+
+@if (ViewBag.Mensaje != null) 
+{
+    <div class="alert alert-warning">
+        @ViewBag.Mensaje
+    </div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Apellidos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Correo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Clave)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().FechaCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().FechaModificacion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Any())
+        {
+            <tr>
+                <td colspan="7">No se encontraron clientes.</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Apellidos)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Correo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Clave)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaCreacion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaModificacion)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Parcial1_BrayanPorrasCerdas.Models.MetodoEnvio>
+
+@{
+    ViewData["Title"] = "Metodos de envio";
+}
+
+<h1>Metodos de envio</h1>
+
+
+<form asp-controller="MetodoEnvios" asp-action="Index">
+    <p>
+        BUSCAR METODO DE ENVIO: <input type="text" name="buscar_metodo_envio" class="form-text" />
+        <input type="submit" value="Buscar" class="btn btn-sm btn-dark" />
+    </p>
+</form>
+
+
+<p>
+    <a asp-action="Create">Crear nuevo metodo de envio</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaModificacion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaModificacion)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdMetodoEnvio">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdMetodoEnvio">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdMetodoEnvio">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

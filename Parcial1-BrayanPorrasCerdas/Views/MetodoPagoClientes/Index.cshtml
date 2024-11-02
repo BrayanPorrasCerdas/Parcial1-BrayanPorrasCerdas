@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Parcial1_BrayanPorrasCerdas.Models.MetodoPagoCliente>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Ingresar Metodo de pago</a>
+</p>
+
+
+
+<form asp-controller="MetodoPagoClientes" asp-action="Index">
+    <p>
+        BUSCAR METODO DE PAGO: <input type="text" name="buscar_metodo_pago" class="form-text" />
+        <input type="submit" value="Buscar" class="btn btn-sm btn-dark" />
+    </p>
+</form>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdTipoPago)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreProveedor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cuenta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaExpira)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PorDefecto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaModificacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdClienteNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdTipoPago)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreProveedor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cuenta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaExpira)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PorDefecto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaModificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdClienteNavigation.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdMetodoPago">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdMetodoPago">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdMetodoPago">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

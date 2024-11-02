@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Parcial1_BrayanPorrasCerdas.Models.Direccion>
+
+@{
+    ViewData["Title"] = "Direccion Info";
+}
+
+<h1>Direcciones</h1>
+
+<form asp-controller="Direcciones" asp-action="Index">
+
+    <p>
+        BUSCAR DIRECCION: <input type="text" name="buscar_direccion" class="form-text" />
+        <input type="submit" value="Buscar" class="btn btn-sm btn-dark" />
+
+
+
+</form>
+
+<p>
+    <a asp-action="Create" class="btn btn-sm btn-dark">Crear nueva direccion</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProvinciaId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CantonId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DistritoId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DireccionExacta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodigoPostal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdPais)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaModificacion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProvinciaId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CantonId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DistritoId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DireccionExacta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoPostal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPais)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaModificacion)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

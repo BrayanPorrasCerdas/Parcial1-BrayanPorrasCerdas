@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Parcial1_BrayanPorrasCerdas.Models.EstadoOrdenCompra>
+
+@{
+    ViewData["Title"] = "Estado de su orden";
+}
+
+<h1>Estado de su orden</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+
+<form asp-controller="EstadoOrdenCompras" asp-action="Index">
+    <p>
+        BUSCAR ESTADO: <input type="text" name="buscar_estado" class="form-text" />
+        <input type="submit" value="Buscar" class="btn btn-sm btn-dark" />
+    </p>
+</form>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaModificacion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaModificacion)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdEstadoOrden">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdEstadoOrden">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdEstadoOrden">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

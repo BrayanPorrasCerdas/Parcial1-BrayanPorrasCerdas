@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Parcial1_BrayanPorrasCerdas.Models.Pais>
+
+@{
+    ViewData["Title"] = "Paises Info";
+}
+
+<h1>Paises</h1>
+
+
+<form asp-controller="Pais" asp-action="Index">
+    <p>
+        BUSCAR PAIS: <input type="text" name="buscar_pais" class="form-text" />
+        <input type="submit" value="Buscar" class="btn btn-sm btn-dark" />
+    </p>
+</form>
+
+<p>
+    <a asp-action="Create">Crear nuevo país</a>
+</p>
+
+@if (ViewBag.Mensaje != null) 
+{
+    <div class="alert alert-warning">
+        @ViewBag.Mensaje
+    </div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().FechaCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().FechaModificacion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Any())
+        {
+            <tr>
+                <td colspan="4">No se encontraron países.</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaCreacion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaModificacion)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
